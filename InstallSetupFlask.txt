@@ -1,0 +1,15 @@
+## Install VSCode
+# $ sudo apt install code
+
+## Install and upgrade PIP
+# $ sudo pip install pip
+# $ sudo pip install --upgrade pip
+
+## Install and upgrade Flask
+# $ sudo pip install flask
+# $ sudo pip install --upgrade flask
+
+## Check Flask setup
+#  $ python
+#  >>> from flask import Flask
+#  >>>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Network</title>
+    <!-- <link rel="stylesheet" href="static/style.css"> -->
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h2>Home IoT</h2>
+        </div>
+        <div class="main">
+            <div>
+                <button onclick="led_on()">LED ON</button>
+            </div>
+            <div>
+                <button onclick="led_off()">LED OFF</button>
+            </div>
+        </div>
+        <div id="result"></div>
+    </div>
+
+    <script type="text/javascript">
+        const result = document.querySelector('#result')
+        const led_on = () => {
+            fetch('/led/on')
+                .then(res => res.text())
+                .then(data => {
+                    console.log(data)
+                    if (data == 'on') {
+                        result.textContent = `LED ${data.toUpperCase()}`
+                    } else if (data == 'fail') {
+                        result.textContent = 'Fail to load data.'
+                    } else {
+                        result.textContent = 'Error'
+                    }
+                })   
+        }
+        const led_off = () => {
+            fetch('/led/off')
+                .then(res => res.text())
+                .then(data => {
+                    console.log(data)
+                    if (data == 'off') {
+                        result.textContent = `LED ${data.toUpperCase()}`
+                    } else if (data == 'fail') {
+                        result.textContent = 'Fail to load data.'
+                    } else {
+                        result.textContent = 'Error'
+                    }
+                })
+        }
+    </script>
+
+</body>
+</html>
